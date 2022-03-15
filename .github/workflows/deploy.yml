@@ -22,14 +22,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # 1. 체크아웃
       - name: Checkout source code
         uses: actions/checkout@dev
-	
+	  
+      # 2. node.js 환경설정
       - name: Set up Node.js
         uses: actions/setup-node@dev
         with:
-          node-version: 16.13.0
-          
+          node-version: 16.x
+      
+      # 3. 패키지 설치
       - name: Install dependencies
         run: npm install
         
