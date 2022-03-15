@@ -43,8 +43,17 @@
 <script>
 import BarChart from "./BarChart.vue";
 
+const leftResult = ["적극성", "자신감", "책임감", "개인성향", "수평사고"];
+const rightResult = ["수동성", "신중함", "무심함", "조직성향", "위계사고"];
+
 export default {
   name: "ResultData",
+  data() {
+    return {
+      left: leftResult,
+      right: rightResult,
+    };
+  },
   props: {
     user: {
       type: Number,
@@ -54,24 +63,9 @@ export default {
       type: Number,
       required: true,
     },
-    left: {
-      type: String,
-      required: true,
-    },
-    right: {
-      type: String,
-      required: true,
-    },
   },
   components: { BarChart },
   methods: {
-    dataChange(data) {
-      let arr = [];
-      data.forEach((element) =>
-        element > 5 ? arr.push(-element) : arr.push(element)
-      );
-      return arr;
-    },
     selectScoreColor(num) {
       let color = "color:#578339";
       if (num < 5) {

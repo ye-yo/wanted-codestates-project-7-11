@@ -14,12 +14,8 @@ import { computed, defineComponent, ref, toRefs } from "vue";
 import { BarChart, useBarChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
 
-const dataChange = (data) => {
-  let arr = [];
-  data.forEach((element) =>
-    element > 5 ? arr.push(-element) : arr.push(element)
-  );
-  return arr;
+const changeData = (data) => {
+  return data.map((element) => (element > 5 ? -element : element));
 };
 
 Chart.register(...registerables);
@@ -39,7 +35,6 @@ export default defineComponent({
   components: { BarChart },
   setup(props) {
     const { user, company } = toRefs(props);
-    console.log(user, company);
     const options = ref({
       barThickness: 10,
       responsive: true,
@@ -62,11 +57,11 @@ export default defineComponent({
       labels: ["", "", "", "", ""],
       datasets: [
         {
-          data: dataChange(user.value),
+          data: changeData(user.value),
           backgroundColor: "#6E3CF9",
         },
         {
-          data: dataChange(company.value),
+          data: changeData(company.value),
           backgroundColor: "#FFD966",
         },
       ],
