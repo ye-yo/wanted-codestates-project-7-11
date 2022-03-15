@@ -1,14 +1,14 @@
 <template>
   <section>
-    <div class="row">
-      <span class="row left-item"
-        >검색 결과
+    <div class="top-row">
+      <div class="top-row__left">
+        <span>검색 결과</span>
         <RightChevronIcon />
-      </span>
-      <span class="row right-item" v-if="query"
-        >{{ query }}
+      </div>
+      <div class="top-row__right" v-if="query">
+        <span>{{ query }}</span>
         <ResetIcon @click="reset" />
-      </span>
+      </div>
     </div>
     <input
       type="text"
@@ -154,6 +154,19 @@ export default {
 </script>
 
 <style lang="scss">
+@mixin flex-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@mixin ellipse {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 section {
   display: flex;
   flex-direction: column;
@@ -161,24 +174,32 @@ section {
   gap: 20px;
   position: relative;
 
-  .row {
-    display: flex;
+  .top-row {
+    @include flex-row;
     justify-content: space-between;
-    align-items: center;
     color: #727272;
-    gap: 8px;
-    white-space: nowrap;
+    position: relative;
 
-    .left-item {
+    &__left {
+      white-space: nowrap;
+      @include flex-row;
       font-size: 16px;
       font-weight: bold;
     }
 
-    .right-item {
+    &__right {
+      @include flex-row;
       font-size: 14px;
-      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-right: 20px;
 
-      svg {
+      > span {
+        @include ellipse;
+      }
+
+      > svg {
+        position: absolute;
+        right: 0;
         cursor: pointer;
       }
     }
@@ -187,6 +208,7 @@ section {
   input {
     padding: 14px 16px;
     font-size: 14px;
+    color: #121212;
     border: 1px solid #f2f2f2;
     background-color: #f8f8f8;
     border-radius: 4px;
@@ -208,10 +230,13 @@ section {
     padding: 8px;
     border: 1px solid #f2f2f2;
     border-radius: 4px;
+    font-size: 14px;
+    color: #121212;
 
     li {
       border: 4px;
-      padding: 8px;
+      padding: 4px;
+      @include ellipse;
       cursor: pointer;
 
       &.selected {
