@@ -7,6 +7,9 @@ const { VueLoaderPlugin } = require("vue-loader"); // 3번째
 
 // export
 module.exports = {
+  resolve: {
+    extensions: [".js", ".vue"],
+  },
   // 파일을 읽어들이기 시작하는 진입점 설정
   entry: "./src/main.js",
 
