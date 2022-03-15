@@ -3,7 +3,7 @@
     :user-result="userResult"
     :enterprise-result="enterpriseResult"
   />
-  <h1 class="tag active">{{ message }}</h1>
+  <h1 class="tag active">자동 배포 성공?</h1>
 </template>
 
 <script>
