@@ -4,8 +4,8 @@
     <h1>나의 결과는?</h1>
   </section>
   <section class="chart">
-    <main>
-      <div class="between" v-for="(score, i) in user" :key="i">
+    <div>
+      <div class="between" v-for="(score, i) in userResult" :key="i">
         <section class="num">
           <article :style="selectScoreColor(score)">
             <span>{{ score }} </span> / 10
@@ -15,16 +15,19 @@
           <article :style="selectStandardColor(score)">{{ left[i] }}</article>
         </section>
       </div>
-    </main>
-    <main class="chartBar">
+    </div>
+    <div class="chartBar">
       <div class="line">
-        <p id="row" v-for="(score, i) in user" :key="i"></p>
+        <p id="row" v-for="(score, i) in userResult" :key="i"></p>
       </div>
       <p id="col"></p>
-      <BarChart :user="user" :company="company" />
-    </main>
-    <main>
-      <div class="between" v-for="(score, i) in user" :key="i">
+      <ChartBar
+        :user-result="userResult"
+        :enterprise-result="enterpriseResult"
+      />
+    </div>
+    <div>
+      <div class="between" v-for="(score, i) in userResult" :key="i">
         <section class="num">
           <article :style="selectStandardColor(10 - score)">
             {{ right[i] }}
@@ -36,12 +39,12 @@
           </article>
         </section>
       </div>
-    </main>
+    </div>
   </section>
 </template>
 
 <script>
-import BarChart from "./BarChart.vue";
+import ChartBar from "./ChartBar.vue";
 
 const leftResult = ["적극성", "자신감", "책임감", "개인성향", "수평사고"];
 const rightResult = ["수동성", "신중함", "무심함", "조직성향", "위계사고"];
@@ -55,16 +58,16 @@ export default {
     };
   },
   props: {
-    user: {
-      type: Number,
+    userResult: {
+      type: Array,
       required: true,
     },
-    company: {
-      type: Number,
-      required: true,
+    enterpriseResult: {
+      type: Array,
+      default: null,
     },
   },
-  components: { BarChart },
+  components: { ChartBar },
   methods: {
     selectScoreColor(num) {
       let color = "color:#578339";
@@ -99,23 +102,23 @@ export default {
 }
 .chart {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  main {
-    .between {
-      display: flex;
-      .num {
-        article {
-          padding: 1.1rem;
-          font-weight: bold;
-          span {
-            font-size: 1.2rem;
-          }
+  .between {
+    display: flex;
+    .num {
+      article {
+        padding: 1.1rem;
+        font-weight: bold;
+        span {
+          font-size: 1.2rem;
         }
       }
     }
   }
 }
+
 .chartBar {
   width: 20rem;
   padding: 0;
