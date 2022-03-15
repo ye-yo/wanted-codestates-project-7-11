@@ -160,7 +160,7 @@ export default {
   gap: 8px;
 }
 
-@mixin ellipse {
+@mixin ellipsis {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -194,7 +194,7 @@ section {
       margin-right: 20px;
 
       > span {
-        @include ellipse;
+        @include ellipsis;
       }
 
       > svg {
@@ -236,7 +236,7 @@ section {
     li {
       border: 4px;
       padding: 4px;
-      @include ellipse;
+      @include ellipsis;
       cursor: pointer;
 
       &.selected {
