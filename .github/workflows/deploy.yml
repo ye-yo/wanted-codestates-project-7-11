@@ -24,11 +24,11 @@ jobs:
     steps:
       # 1. 체크아웃
       - name: Checkout source code
-        uses: actions/checkout@dev
+        uses: actions/checkout@main
 
       # 2. node.js 환경설정
       - name: Set up Node.js
-        uses: actions/setup-node@dev
+        uses: actions/setup-node@main
         with:
           node-version: 16.x
       
