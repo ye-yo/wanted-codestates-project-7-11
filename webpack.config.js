@@ -45,6 +45,10 @@ module.exports = {
         exclude: /node_modules/, // 제외할 경로
         use: ["babel-loader"],
       },
+      {
+        test: /\.svg$/,
+        use: ["vue-loader", "vue-svg-loader"],
+      },
     ],
   },
 
