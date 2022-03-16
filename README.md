@@ -2,7 +2,7 @@
 사용자가 입력한 **성향 진단 결과값**을 기업 성향 진단 결과와 비교하여 **그래프**로 보여주는 서비스입니다. 
 
 ## 사용한 기술 스택
-<img src="https://img.shields.io/badge/Vue-40B983.svg?&style=for-the-badge&logo=React&logoColor=fff"/> <img src="https://img.shields.io/badge/SCSS-CE699B.svg?&style=for-the-badge&logo=SASS&logoColor=fff"/> <img src="https://img.shields.io/badge/Chart.js-FF787C.svg?&style=for-the-badge&logo=Chart.js&logoColor=fff"/> 
+<img src="https://img.shields.io/badge/Vue-40B983.svg?&style=for-the-badge&logo=vue.js&logoColor=fff"/> <img src="https://img.shields.io/badge/SCSS-CE699B.svg?&style=for-the-badge&logo=SASS&logoColor=fff"/> <img src="https://img.shields.io/badge/Chart.js-FF787C.svg?&style=for-the-badge&logo=Chart.js&logoColor=fff"/> 
 
 ## 프로젝트 실행 방법
 
@@ -28,11 +28,11 @@
 
 | 이름                                       | 직책 | 역할                                       |
 | ------------------------------------------ | ---- | ----------------------------------- |
-| [🔨이예지](https://github.com/Lee-ye-ji)   | 팀원| 개발 환경 구축 및 바차트 구현 |
+| [🚀심채윤](https://github.com/Lela12)      | 팀장 |      헤더 및 탭 컴포넌트 구현        |
 | [⚡️박진용](https://github.com/jinyongp)   | 팀원 |  추천 검색어 기반 검색창 구현    |       
 | [🎨문선경](https://github.com/dev-seomoon) | 팀원 | 개발 환경 설정 및 펜타곤 차트 구현       |
 | [✏️예효은](https://github.com/ye-yo)       | 팀원 |   도넛 차트 구현          |
-| [🚀심채윤](https://github.com/Lela12)      | 팀장 |      헤더 및 탭 컴포넌트 구현        |
+| [🔨이예지](https://github.com/Lee-ye-ji)   | 팀원| 개발 환경 구축 및 바 차트 구현 |
 
 
 ---
@@ -46,18 +46,17 @@
 ---
 
 
-## 이예지
+## 심채윤
 
-#### 구현한 방법
+### 구현한 방법
 
-#### 어려웠던 점 (에러 핸들링)
-
+### 어려웠던 점 (에러 핸들링)
 
 ## 박진용
 
-#### 구현한 방법
+### 구현한 방법
 
-#### 어려웠던 점 (에러 핸들링)
+### 어려웠던 점 (에러 핸들링)
 
 
 ## 문선경
@@ -90,8 +89,44 @@
 반응형을 위한 `responsive`값은 default가 `true`이기 때문에 문제가 없었으며 리사이징 시의 종횡비 유지 옵션인 `maintainAspectRatio`를 `false` 로 변경해주어야 한다는 것을 알게되었습니다. 종횡비 유지 옵션을 false로 설정할 경우 차트의 사이즈가 상위 컨테이너 요소의 사이즈에 따라 자동 조정되어 원하는 결과를 얻을 수 있었습니다.
 
 
-## 심채윤
 
-#### 구현한 방법
+## 이예지
 
-#### 어려웠던 점 (에러 핸들링)
+데이터 결과값을 바 그래프로 표시
+
+### 구현한 방법
+[Chart.js](https://www.chartjs.org/docs/latest/)의 문서와 [Vue Chart.js example](https://codesandbox.io/examples/package/vue-chartjs)을 보면서 해당 내용을 빠르게 습득하고 이해하려고 노력하였습니다. `indexAxis: "y"` 를 이용하여 Horizontal Bar Chart 형태로 변경해주었고, 라벨을 없애기 위해서 아래의 코드와 같이 사용하였습니다.
+```
+plugins: {
+  legend: false,
+},
+```
+그 외의 행과 열에 대한 줄을 없애기 위해서 아래의 코드를 적용하였습니다.
+```
+scales: {
+        x: {
+          display: false,
+        },
+        y: {
+          display: false,
+        },
+      },
+```
+이외의 여러가지 요소들은 검색을 통해 찾아가면서 구현하려고 노력하였습니다. 
+또한 기존에는 한 파일에서 코드를 작성하였는데 완성하고 나니 코드의 길이가 길어져서 해당 내용을 `ChartBarView.vue` 와 `ChartBar.vue` 로 나누었습니다. 
+
+### 어려웠던 점 (에러 핸들링)
+#### Bar Chart 행과 열 선 부분
+기존의 라이브러리를 활용하여 하는 방법은 없을까 고민하며 많이 찾기도 하였지만 결국에는 직접 구현해야겠다는 생각을 하게 되었습니다. 처음에는 [Chart.js](https://www.chartjs.org/docs/latest/)속성을 활용하면 되지 않을까라는 생각에 문서를 읽어봤지만 어떻게 활용을 해야할지 감이 잡히지 않았습니다. 그래서 검색 결과 시에 [chartjs-plugin-annotation](https://www.chartjs.org/chartjs-plugin-annotation/latest/guide/) 라이브러리를 이용하는 방법도 알게되었습니다. 하지만 vue version 3과에 대해 호환되지 않는 문제인지 아무런 에러 없이 바 차트만 나오고 어노테이션은 적용이 되지 않는 다는 것을 알게되었습니다. 그래서 결국에는 직접 구현해야겠다라는 생각으로 `<div></div>`를 이용하여 선을 그렸습니다. 세로 축에는 하나이므로 `border-left` 속성을 이용하여 그렸고, 가로는 `for`문을 이용하여 `border-bottom` 속성을 이용하여 선을 그릴 수 있었습니다.
+
+#### 높은 점수 기준으로 색깔 표시
+개인 점수 중 높은 점수 쪽 기준값을 '초록색'으로 변환하여 표시해야하는 부분에서 어려움을 겪었습니다. 처음에는 이 둘의 값을 어떻게 비교하지에 대한 막막함이 있었습니다. 둘을 비교하기 위해 매개변수로 받고 결과값을 적용하는 방법보다는 각 바의 양쪽 점수가 총 합이 10이어야 하므로 숫자 5를 기준으로 둔다면 더 편리하게 높은 점수 기준을 표시할 수 있을 것 같았습니다. 그래서 그 방법을 적용하기 위해 아래와 같은 코드로 작성하였고, 결과가 잘 표시되는 것을 확인할 수 있었습니다.
+```js
+selectStandardColor(num) {
+      let color = "color:#25BB6A";
+      if (num < 5) {
+        color = "color:#000";
+      }
+      return color;
+    },
+```
