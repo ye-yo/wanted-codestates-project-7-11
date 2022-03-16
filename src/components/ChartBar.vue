@@ -38,6 +38,7 @@ export default defineComponent({
     const options = ref({
       barThickness: 10,
       responsive: true,
+      maintainAspectRatio: false,
       indexAxis: "y",
       scales: {
         x: {
