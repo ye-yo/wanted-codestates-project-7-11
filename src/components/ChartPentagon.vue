@@ -28,6 +28,7 @@ export default defineComponent({
   setup(props) {
     const options = {
       reposive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: { enabled: false },
