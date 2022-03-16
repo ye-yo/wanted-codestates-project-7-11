@@ -47,7 +47,7 @@
 
 <script>
 import { fuzzyMatcher } from "../utils/search";
-import enterprises from "../datas/enterprise.json";
+import enterprises from "../data/enterprise.json";
 import RightChevronIcon from "../assets/right-chevron.svg";
 import ResetIcon from "../assets/reset.svg";
 
@@ -232,6 +232,8 @@ section {
     border-radius: 4px;
     font-size: 14px;
     color: #121212;
+    background-color: white;
+    z-index: 1;
 
     li {
       border: 4px;
